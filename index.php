@@ -4,8 +4,13 @@ use Nolikein\Api\Derpibooru;
 
 require __DIR__.'/system/autoloader.php';
 
-    $api = new Derpibooru();
-    $images = $api->getRandomImageList(9, 'Fluttershy');
+    $Dapi = new Derpibooru();
+    $tag = 'Fluttershy';
+    $quantity = 9;
+    $nPage = 1;
+
+    $images = $Dapi->getRandomImageList( $quantity, $tag );
+
 
 ob_start(); ?>
 <!DOCTYPE html>

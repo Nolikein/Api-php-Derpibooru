@@ -28,7 +28,7 @@ Example :
     $nPage = 1;
 
     $images = $Dapi->getLatestImages( $quantity, $nPage );
-    $images = $Dapi->getRandomImageList( $tag, $quantity, $nPage );
+    $images = $Dapi->getImageByTag( $tag, $quantity, $nPage );
     $images = $Dapi->getRandomImage( $tag );
     $images = $Dapi->getRandomImageList( $quantity, $tag );
 

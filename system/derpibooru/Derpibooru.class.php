@@ -50,7 +50,7 @@ class Derpibooru
 
         # To beginning, we clean all arguments send by the user
         $cleaner = new ArgumentCleaner;
-        $tagArg = 'q='.$this->cleanUserTags($userTags);
+        $tagArg = 'q='.$cleaner->cleanUserTags($userTags);
         $quantityArg = 'perpage='.$cleaner->cleanUserQuantity($userQuantity);
         $pageArg = 'page='.$cleaner->cleanUserPage($userPage);
 
