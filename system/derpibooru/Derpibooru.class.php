@@ -4,6 +4,13 @@ namespace Nolikein\Api;
 
 use Nolikein\Api\components\ArgumentCleaner;
 
+/**
+ * Derpibooru Api
+ *
+ * @package  Api-php-Derpibooru
+ * @author   Nolikein <duboixys.gekiou@gmail.com>
+ */
+
 class Derpibooru
 {
     
