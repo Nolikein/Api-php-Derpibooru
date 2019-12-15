@@ -2,11 +2,10 @@
 
 ## How to install ?
 
-You need to include the class and its namespace :
+You need to include the autoloader and the namespace to call the class :
 
     use Nolikein\Api\Derpibooru;
-    require __DIR__.'/system/components/ArgumentCleaner.class.php';
-    require __DIR__.'/system/Derpibooru.class.php';
+    require __DIR__.'/system/autoloader.php';
 
 You need php with the version 7.0 <-> 7.3.11
 
