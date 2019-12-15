@@ -33,7 +33,7 @@ Example :
     $images = $Dapi->getRandomImage( $tag );
     $images = $Dapi->getRandomImageList( $quantity, $tag );
 
-## I want to show and image
+## I want to show an image
 
     if(is_array($images))
         foreach($images as $image) {
