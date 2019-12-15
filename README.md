@@ -5,7 +5,8 @@
 You need to include the class and its namespace :
 
     use Nolikein\Api\Derpibooru;
-    require __DIR__.'/Derpibooru.class.php';
+    require __DIR__.'/system/components/ArgumentCleaner.class.php';
+    require __DIR__.'/system/Derpibooru.class.php';
 
 You need php with the version 7.0 <-> 7.3.11
 

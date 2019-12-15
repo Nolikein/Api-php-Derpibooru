@@ -2,9 +2,7 @@
 
 use Nolikein\Api\Derpibooru;
 
-require __DIR__.'/system/components/TagHelper.class.php';
-require __DIR__.'/system/components/ArgumentCleaner.class.php';
-require __DIR__.'/system/Derpibooru.class.php';
+require __DIR__.'/system/autoloader.php';
 
     $api = new Derpibooru();
     $images = $api->getRandomImageList(9, 'Fluttershy');
