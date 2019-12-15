@@ -1,4 +1,4 @@
-# Api-Derpibooru
+# Api-php-Derpibooru
 
 ## How to install ?
 
