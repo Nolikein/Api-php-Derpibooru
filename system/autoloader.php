@@ -2,7 +2,7 @@
 
 spl_autoload_register(
     function ($className) {
-        $classpath = trim($classpath, '\\');
+        $className = trim($className, '\\');
         $classpath = explode('\\', $className);
 
         if (count($classpath) > 1) {

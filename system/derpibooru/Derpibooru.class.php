@@ -89,7 +89,7 @@ class Derpibooru
         $imageId = $responseDecoded['id'];
 
         # The following lines will send a request with an image id to get all data of an image
-        $completeUrl = self::protocol.'://'.self::domainName.'/'.$imageId.'.json/?'.$tagArg.'&'.$quantityArg.'&'.$pageArg;
+        $completeUrl = self::protocol.'://'.self::domainName.'/'.$imageId.'.json/?'.$tagArg;
         $siteResponse = file_get_contents($completeUrl);
         $responseDecoded = json_decode($siteResponse, 1);
 

@@ -9,8 +9,7 @@ require __DIR__.'/system/autoloader.php';
     $quantity = 9;
     $nPage = 1;
 
-    $images = $Dapi->getRandomImageList( $quantity, $tag );
-
+    $images = $Dapi->getLatestImages( $quantity );
 
 ob_start(); ?>
 <!DOCTYPE html>
