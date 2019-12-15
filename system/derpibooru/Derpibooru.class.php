@@ -8,7 +8,7 @@ use Nolikein\Api\components\ArgumentCleaner;
  * Derpibooru Api
  *
  * @package  Api-php-Derpibooru
- * @author   Nolikein <duboixys.gekiou@gmail.com>
+ * @author    <duboixys.gekiou@gmail.com>
  */
 
 class Derpibooru

@@ -4,7 +4,7 @@
 
 You need to include the autoloader and the namespace to call the class :
 
-    use Nolikein\Api\Derpibooru;
+    use \Api\Derpibooru;
     require __DIR__.'/system/autoloader.php';
 
 You need php with the version 7.0 <-> 7.3.11
