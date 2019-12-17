@@ -39,18 +39,18 @@ Example :
             if($media->getType() == 'image')
             {
                 ?>
-                <a href="<?= $media->getUrl() ?>"><img src="<?= $media->getUrl() ?>" alt="Not found"></a>
+                <a href="<?= $media->getUrl() ?>"><img src="<?= $media->getUrl() ?>" alt="Loading..."></a>
                 <?php
             }
             else
             {
                 ?>
-                <a href="<?= $media->getUrl() ?>"><img src="/system/derpibooru/assets/movie-icon.png" alt="Not found"></a>
+                <a href="<?= $media->getUrl() ?>"><img src="/system/derpibooru/assets/movie-icon.png" alt="Loading..."></a>
                 <?php
             }
         }
     } else {
-        echo '<a href="'.$mediaList->getUrl().'"><img src="'.$mediaList->getUrl().'" alt="Not found"></a>';
+        echo '<a href="'.$mediaList->getUrl().'"><img src="'.$mediaList->getUrl().'" alt="Loading..."></a>';
     }
 
 *I know, this is a bad code but I think that it's faster to read.*
