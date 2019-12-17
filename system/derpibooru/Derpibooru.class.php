@@ -3,6 +3,7 @@
 namespace Nolikein\Api;
 
 use Nolikein\Api\components\ArgumentCleaner;
+use Nolikein\Api\components\Media;
 
 /**
  * Derpibooru Api
@@ -43,11 +44,14 @@ class Derpibooru
         $siteResponse = file_get_contents($completeUrl);
         $responseDecoded = json_decode($siteResponse, 1);
 
-        $imgList = [];
+        $mediaList = [];
         foreach ($responseDecoded['images'] as $search) {
-            $imgList[] = $search['image'];
+            $media = new Media();
+            $media->setUrl($search['image']);
+            $media->setType(strpos($media->getUrl(), '.webm') ? 'movie' : 'image');
+            $mediaList[] = $media;
         }
-        return $imgList;
+        return $mediaList;
     }
 
     public function getImageByTag(string $userTags = '*', int $userQuantity = 5, int $userPage = 1) : array
@@ -67,14 +71,17 @@ class Derpibooru
         $responseDecoded = json_decode($siteResponse, 1);
 
         # Finaly, we go through the array to get all image link and we return the result
-        $imgList = [];
+        $mediaList = [];
         foreach ($responseDecoded['search'] as $search) {
-            $imgList[] = $search['image'];
+            $media = new Media();
+            $media->setUrl($search['image']);
+            $media->setType(strpos($media->getUrl(), '.webm') ? 'movie' : 'image');
+            $mediaList[] = $media;
         }
-        return $imgList;
+        return $mediaList;
     }
 
-    public function getRandomImage(string $specificTags = '*') : string
+    public function getRandomImage(string $specificTags = '*') : ?Media
     {
         //  Description : Get one random image.
         //  -----------------------------------
@@ -86,18 +93,29 @@ class Derpibooru
         $completeUrl = self::protocol.'://'.self::domainName.'/'.self::searchAction.'/?'.$tagArg.'&random_image=y';
         $siteResponse = file_get_contents($completeUrl);
         $responseDecoded = json_decode($siteResponse, 1);
-        $imageId = $responseDecoded['id'];
+        
+        # There is one item?
+        if (!isset($responseDecoded['id'])) {
+            return null;
+        }
+
+        $mediaId = $responseDecoded['id'];
+
 
         # The following lines will send a request with an image id to get all data of an image
-        $completeUrl = self::protocol.'://'.self::domainName.'/'.$imageId.'.json/?'.$tagArg;
+        $completeUrl = self::protocol.'://'.self::domainName.'/'.$mediaId.'.json/?'.$tagArg;
         $siteResponse = file_get_contents($completeUrl);
         $responseDecoded = json_decode($siteResponse, 1);
 
         # Finaly, we return the direct link of an image
-        return $responseDecoded['image'];
+        $media = new Media();
+        $media->setUrl($responseDecoded['image']);
+        $media->setType(strpos($media->getUrl(), '.webm') ? 'movie' : 'image');
+
+        return $media;
     }
 
-    public function getRandomImageList(int $userQuantity = 5, string $specificTags = '*')
+    public function getRandomImageList(string $specificTags = '*', int $userQuantity = 5) : ?array
     {
         //  Description : Get many random images. Tag possible
         //  --------------------------------------------------
@@ -114,12 +132,15 @@ class Derpibooru
             }
         }
         
-        # Here, we call a generator $userQuantity time and return all url images get with it
-        $imagesUrl = [];
+        # Here, we get a list of media and test if the media is empty
+        $mediaList = [];
         $randomList = getRandomImage($this, $userQuantity, $specificTags);
-        foreach ($randomList as $random_image) {
-            $imagesUrl[] = $random_image;
+        foreach ($randomList as $randomMedia) {
+            if (empty($randomMedia)) {
+                return null;
+            }
+            $mediaList[] = $randomMedia;
         }
-        return $imagesUrl;
+        return $mediaList;
     }
 }

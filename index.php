@@ -9,8 +9,8 @@ require __DIR__.'/system/autoloader.php';
     $quantity = 9;
     $nPage = 1;
 
-    $images = $Dapi->getLatestImages( $quantity );
-
+    $mediaList = $Dapi->getRandomImageList($tag, $quantity);
+    
 ob_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,14 +50,20 @@ ob_start(); ?>
     <body>
         <div class="container">
             <?php
-            if (is_array($images)) {
-                foreach ($images as $image) {
-                    ?>
-                        <a href="<?= $image ?>"><img src="<?= $image ?>" alt="Not found"></a>
-                    <?php
+            if (is_array($mediaList)) {
+                foreach ($mediaList as $media) {
+                    if ($media->getType() == 'image') {
+                        ?>
+                        <a href="<?= $media->getUrl() ?>"><img src="<?= $media->getUrl() ?>" alt="Not found"></a>
+                        <?php
+                    } else {
+                        ?>
+                        <a href="<?= $media->getUrl() ?>"><img src="/system/derpibooru/assets/movie-icon.png" alt="Not found"></a>
+                        <?php
+                    }
                 }
             } else {
-                echo '<a href="'.$image.'"><img src="'.$images.'" alt="Not found"></a>';
+                echo '<a href="'.$mediaList->getUrl().'"><img src="'.$mediaList->getUrl().'" alt="Not found"></a>';
             }
             ?>
         </div>

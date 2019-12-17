@@ -30,19 +30,28 @@ Example :
     $images = $Dapi->getLatestImages( $quantity, $nPage );
     $images = $Dapi->getImageByTag( $tag, $quantity, $nPage );
     $images = $Dapi->getRandomImage( $tag );
-    $images = $Dapi->getRandomImageList( $quantity, $tag );
+    $images = $Dapi->getRandomImageList( $tag, $quantity );
 
-## I want to show an image
+## I want to show a list of media
 
-    if(is_array($images))
-        foreach($images as $image) {
-            ?>
-                <img src="<?= $image ?>" alt="Not found">
-            <?php
+    if (is_array($mediaList)) {
+        foreach ($mediaList as $media) {
+            if($media->getType() == 'image')
+            {
+                ?>
+                <a href="<?= $media->getUrl() ?>"><img src="<?= $media->getUrl() ?>" alt="Not found"></a>
+                <?php
+            }
+            else
+            {
+                ?>
+                <a href="<?= $media->getUrl() ?>"><img src="/system/derpibooru/assets/movie-icon.png" alt="Not found"></a>
+                <?php
+            }
         }
-    else
-        echo '<img src="'.$images.'" alt="Not found">';
-    ?>
+    } else {
+        echo '<a href="'.$mediaList->getUrl().'"><img src="'.$mediaList->getUrl().'" alt="Not found"></a>';
+    }
 
 *I know, this is a bad code but I think that it's faster to read.*
 

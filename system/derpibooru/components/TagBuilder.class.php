@@ -2,6 +2,6 @@
 
 namespace Nolikein\Api\components;
 
-class TagHelper
+class TagBuilder
 {
 }
