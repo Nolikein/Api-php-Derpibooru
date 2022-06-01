@@ -1,5 +1,7 @@
 # Api-php-Derpibooru [DEPRECIED]
 
+Look at [this repository](https://github.com/Nolikein/Api-Derpibooru-Facade)
+
 ## How to install ?
 
 You need to include the autoloader and the namespace to call the class :
